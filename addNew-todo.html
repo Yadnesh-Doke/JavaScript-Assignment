@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ToDo-Add</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="css/reset.css">
+        <link rel="stylesheet" type="text/css" href="css/addNew-todo-style.css">
+    </head>
+
+    <body>
+        <header>
+            <h1>ToDo App</h1>
+            <div class="header-nav">
+                <ul>
+                    <li><a href="Profile.html"> <img src="images/profile-icon-9.png" alt="img" id="profile-image"> </a></li>
+                    <li id="profile-link-li"><a href="Profile.html" id="profile-link">Profile</a></li>
+                    <li><a href="todoList.html">Main Page</a></li>
+                    <li><a href="index.html" onclick="delSession()">Log Out</a></li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </header>
+
+        <section class="todo-add">
+            <div class="add-task">
+                
+                    <form onsubmit="return addTask()" action="todoList.html">
+                        <label for="title">Title:</label><br>
+                        <input type="text" id="title" placeholder="Enter title" required>  
+
+                        <label for="category">Category:</label><br>
+                        <select id="category">
+                            <option value="Office">Office</option>
+                            <option value="Personal">Personal</option>
+                            <option value="Other">Other</option>
+                        </select>
+
+                        <label for="start-date">Start date:</label>
+                        <input type="date" id="start-date" oninput="minDueDate(this.value)" required>
+
+                        <label for="due-date">Due date:</label>
+                        <span class="error-msg" id="error-greaterStart">Due date cannot be smaller than start date</span>
+                        <input type="date" id="due-date" oninput="maxRemDate(this.value)" required>
+
+                        <label>Is Reminder:</label>
+                        <span onclick="checkRadio(1)"><input type="radio" name="reminderValue" value="yes" id="yes" oninput="selectReminder()">Yes</span>
+                        <span onclick="checkRadio(2)"><input type="radio" name="reminderValue" value="no" id="no" oninput="fadeReminder()">No</span>
+                        <br>
+
+                        <label for="reminder-date" class="reminder">Reminder date:</label> 
+                        <span class="error-msg" id="error-reminderEmpty">Reminder date should not be empty</span> 
+                        <input type="date" id="reminder-date" class="reminder">
+
+                        <label>Is Public:</label>
+                        <span onclick="checkPublic(1)"><input type="radio" name="isPublic" value="yes" id="publicYes">Yes</span>
+                        <span onclick="checkPublic(2)"><input type="radio" name="isPublic" value="no" id="publicNo">No</span>
+                        <br>
+
+                        <input type="submit" value="Add">
+
+                    </form>
+            </div>
+        </section>
+        <script src="scripts/addNew-todo-script.js"></script>
+    </body>
+</html>
